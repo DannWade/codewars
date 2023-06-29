@@ -9,24 +9,34 @@ export default function EditProfile() {
    const [editMode, setMode] = useState(false);
    const [firstName, setFirst] = useState('Jane');
    const [lastName, setLast] = useState('Jacobs');
-   const [modeName, setModeName] = useState('Edit');
-  function submitButt(){setMode(!editMode)}
+  function submitButt(e){
+    e.preventDefault();
+    setMode(!editMode)
+  }
+  function handleFirstChange(e){
+    e.preventDefault();
+    setFirst(e.target.value)
+  }
+  function handleLastChange(e){
+    e.preventDefault();
+    setLast(e.target.value)
+  }
   return (
     <form onSubmit={submitButt}>
       <label>
         First name:{' '}
-        <b>{editMode && firstName}</b>
-        <input />
+        <b>{!editMode && firstName}</b>
+        {editMode && <input onChange={handleFirstChange} />}
       </label>
       <label>
         Last name:{' '}
-        <b>{editMode && lastName}</b>
-        <input />
+        <b>{!editMode && lastName}</b>
+        {editMode && <input onChange={handleLastChange} />}
       </label>
       <button>
         {!editMode ? 'Edit Profile' : 'Save Profile'}
       </button>
-      <p><i>{editMode && "Hello, Jane Jacobs"}</i></p>
+      <p><i>{!editMode && "Hello, "+ firstName +" "+ lastName}</i></p>
     </form>
   );
 }
