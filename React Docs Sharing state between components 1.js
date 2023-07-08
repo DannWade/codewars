@@ -12,7 +12,7 @@ export default function SyncedInputs() {
   );
 }
 
-function Input({ label,text='hello',handleChange }) {
+function Input({ label,text,handleChange }) {
 
   return (
     <label>
